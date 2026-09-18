@@ -1,10 +1,14 @@
 
 
 import 'package:festival_buddy/pages/home_page.dart';
+import 'package:festival_buddy/service/sync_service.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  final syncService = SyncService();
+  syncService.start();
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
