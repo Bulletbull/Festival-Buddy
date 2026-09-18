@@ -1,5 +1,6 @@
 
-import 'package:festival_buddy/Screens/MyHomePage.dart';
+
+import 'package:festival_buddy/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title:  'Flutter Demo Home Page'),
+      home: const HomePage(),
     );
   }
 }
