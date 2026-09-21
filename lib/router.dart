@@ -5,6 +5,7 @@ import 'pages/home_page.dart';
 import 'pages/map_page.dart';
 import 'pages/program_page.dart';
 import 'pages/update_page.dart';
+import 'pages/report_page.dart';
 
 final router = GoRouter(
   routes: [
@@ -38,7 +39,11 @@ final router = GoRouter(
         GoRoute(
           path: '/updates',
           builder: (context, state) => const UpdatesPage(),
-        ),  
+        ),
+        GoRoute(
+          path: '/report',
+          builder: (context, state) => const ReportPage(),
+        ),
       ],
     ),
   ],

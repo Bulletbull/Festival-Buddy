@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   final syncService = SyncService();
   syncService.start();
   runApp(ProviderScope(child: MyApp()));

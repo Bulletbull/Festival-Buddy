@@ -60,6 +60,15 @@ class HomePage extends StatelessWidget {
               context.go('/updates');
             },
           ),
+          const SizedBox(height: 12),
+          NavCard(
+            icon: Icons.report,
+            title: 'Report an Issue',
+            subtitle: 'Report any issues you encounter',
+            onTap: () {
+              context.go('/report');
+            },
+          ),
         ],
       ),
     );
