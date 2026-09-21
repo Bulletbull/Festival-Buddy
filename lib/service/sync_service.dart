@@ -18,11 +18,9 @@ final Connectivity connectivity = Connectivity();
 
   void start() {
     _sub = Connectivity().onConnectivityChanged.listen((results) {
-      final online = results.any((r) =>
-          r == ConnectivityResult.wifi ||
-          r == ConnectivityResult.mobile);
-      controller.add(online);
+      check();
     });
+    check();
   }
 
   Future<void> check() async {

@@ -33,7 +33,7 @@ class MapPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
                       child: Text(
-                        'Add google_maps_flutter or flutter_map to display a real map.',
+                        'Add map here.',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
