@@ -18,10 +18,31 @@ class DatabaseHelper {
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
-      CREATE TABLE customers (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+      CREATE TABLE events (
+        event_id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        email TEXT
+        date TEXT NOT NULL
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE map (
+        map_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        map BLOB NOT NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE update (
+        update_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE Reportform (
+        report_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        message TEXT NOT NULL
       )
     ''');
   }
