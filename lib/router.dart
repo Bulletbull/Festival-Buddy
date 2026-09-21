@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'pages/home_page.dart';
 import 'pages/map_page.dart';
 import 'pages/program_page.dart';
+import 'pages/update_page.dart';
 
 final router = GoRouter(
   routes: [
@@ -34,6 +35,10 @@ final router = GoRouter(
           path: '/map',
           builder: (context, state) => const MapPage(),
         ),
+        GoRoute(
+          path: '/updates',
+          builder: (context, state) => const UpdatesPage(),
+        ),  
       ],
     ),
   ],
