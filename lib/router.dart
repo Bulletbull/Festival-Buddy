@@ -12,8 +12,13 @@ final router = GoRouter(
       builder: (context, state, child) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Festival Buddy'),
+            title: GestureDetector(
+            onTap: () {
+            context.go('/');
+          },
+          child: const Text('Festival Buddy'),
           ),
+    ),
           body: child,
         );
       },
