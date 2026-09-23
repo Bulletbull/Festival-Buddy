@@ -53,7 +53,8 @@ class DatabaseHelper {
       CREATE TABLE update (
         update_id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
-        description TEXT NOT NULL
+        description TEXT NOT NULL,
+        date TEXT NOT NULL
       )
     ''');
     await db.execute('''
