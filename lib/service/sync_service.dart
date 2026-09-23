@@ -1,41 +1,33 @@
 import 'dart:async';
-import 'dart:io';
 
+import 'package:festival_buddy/local_repository/program_local_repository.dart';
+import 'package:festival_buddy/remote_repository/program_remote_repository.dart';
+import 'package:festival_buddy/service/connectivity_service.dart';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
+class SyncService {
+  final ProgramLocalRepository programLocalRepository;
+  final ProgramRemoteRepository programRemoteRepository;
+  final ConnectivityService connectivityService;
 
+  StreamSubscription<bool>? _connectivitySubscription;
 
-class SyncService{
-  SyncService(){
-    start();
-  }
-
-final Connectivity connectivity = Connectivity();
-  final StreamController<bool> controller = StreamController<bool>.broadcast();
-  Stream<bool> get onStatusChange => controller.stream;
-  StreamSubscription? _sub;
-
+  SyncService(this.programLocalRepository,
+              this.programRemoteRepository,
+              this.connectivityService);
 
   void start() {
-    _sub = Connectivity().onConnectivityChanged.listen((results) {
-      check();
-    });
-    check();
-  }
-
-  Future<void> check() async {
-    bool online;
-    try{
-        final r = await InternetAddress.lookup("host.com");
-        online = r.isNotEmpty && r[0].rawAddress.isNotEmpty;
-      } on SocketException{
-        online = false;
+    _connectivitySubscription =
+        connectivityService.onStatusChange.listen((online) {
+      if (online) {
+        sync();
       }
-      if(!controller.isClosed) controller.add(online);
+    });
   }
 
+  void sync(){
+
+  }
   Future<void> dispose() async {
-    await _sub?.cancel();
-    await controller.close();
+    await _connectivitySubscription?.cancel();
   }
 }
