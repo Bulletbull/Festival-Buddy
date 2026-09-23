@@ -17,6 +17,24 @@ class DatabaseHelper {
   }
 
   Future<void> _onCreate(Database db, int version) async {
+
+    await db.execute('''
+      CREATE TABLE sync_metadata (
+      key TEXT PRIMARY KEY,
+      version INTEGER 
+      )
+    ''');
+
+    await db.insert('sync_metadata', {
+      'key': 'program',
+      'version': 0,
+    });
+
+    await db.insert('sync_metadata', {
+      'key': 'map',
+      'version': 0,
+    });
+
     await db.execute('''
       CREATE TABLE events (
         event_id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -1,7 +1,10 @@
+
+import 'package:festival_buddy/providers/program/programs_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../widgets/event_card.dart';
 
-class ProgramPage extends StatelessWidget {
+class ProgramPage extends ConsumerWidget {
   const ProgramPage({super.key});
 
   final List<Map<String, String>> _events = const [
@@ -14,8 +17,9 @@ class ProgramPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
+    final events = ref.watch(programsProvider);
 
     return Scaffold(
       appBar: AppBar(

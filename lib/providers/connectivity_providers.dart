@@ -1,9 +1,9 @@
-import 'package:festival_buddy/service/sync_service.dart';
+import 'package:festival_buddy/service/connectivity_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final internetConnectivityCheckerProvider =
-    Provider<SyncService>((ref) {
-  final checker = SyncService();
+    Provider<ConnectivityService>((ref) {
+  final checker = ConnectivityService();
 
   
   ref.onDispose(checker.dispose);
