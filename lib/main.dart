@@ -7,11 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-<<<<<<< HEAD
   final syncService = ConnectivityService();
-=======
-  final syncService = SyncService();
->>>>>>> origin/update/report-screen
   syncService.start();
   runApp(ProviderScope(child: MyApp()));
 }
