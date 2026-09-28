@@ -11,5 +11,11 @@ class ProgramLocalRepository {
     return await db.query('events');
   }
 
+   Future<List<Map<String, dynamic>>> getUpdates() async {
+    final db = await databaseHelper.database;
+
+    return await db.query('updates');
+  }
+
   
 }

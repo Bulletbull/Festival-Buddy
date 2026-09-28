@@ -68,8 +68,7 @@ class _UpdateCardState extends State<UpdateCard> {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          'Versie ${widget.update.version} • '
-                          '${widget.update.date}',
+                          widget.update.date,
                           style: TextStyle(
                             fontSize: 13,
                             color: Colors.grey.shade600,

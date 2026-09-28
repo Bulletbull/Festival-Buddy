@@ -1,70 +1,42 @@
-import 'package:flutter/material.dart';
-import '../widgets/update_card.dart';
-import '../domain/update.dart';
 
-class UpdatesPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../providers/update_provider.dart';
+import '../widgets/update_card.dart';
+
+class UpdatesPage extends ConsumerWidget {
   const UpdatesPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final updates = [
-      Update(
-        version: '2.4.0',
-        date: '21 september 2026',
-        title: 'Nieuwe functies',
-        description: 
-          'Nieuwe instellingen toegevoegd\n'
-          'Verbeterde navigatie binnen de app\n'
-          'Nieuwe zoekfunctie toegevoegd\n'
-          'Prestaties van de app verbeterd'
-        ,
-      ),
-      Update(
-        version: '2.3.2',
-        date: '12 september 2026',
-        title: 'Verbeteringen',
-        description: 
-          'Verschillende bugs opgelost\n'
-          'Snellere laadtijden\n'
-          'Verbeterde animaties'
-          ,
-      ),
-      Update(
-        version: '2.3.0',
-        date: '1 september 2026',
-        title: 'Nieuw ontwerp',
-        description: 
-          'Volledig nieuw ontwerp\n'
-          'Nieuwe kleuren en iconen\n'
-          'Verbeterde gebruikerservaring\n'
-          'Donkere modus verbeterd'
-          ,
-      ),
-    ];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final updatesAsync = ref.watch(updatesProvider);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F7F9),
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: const Color(0xFFF7F7F9),
-        foregroundColor: Colors.black,
-        title: const Text(
-          'Updates',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        backgroundColor: colorScheme.inversePrimary,
+        title: const Text('Updates'),
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(20),
-        itemCount: updates.length,
-        separatorBuilder: (_, _) => const SizedBox(height: 14),
-        itemBuilder: (context, index) {
-          return UpdateCard(update: updates[index]);
-        },
+      body: updatesAsync.when(
+        loading: () => const Center(
+          child: CircularProgressIndicator(),
+        ),
+        error: (error, _) => Center(
+          child: Text('Updates laden mislukt: $error'),
+        ),
+        data: (updates) => ListView.separated(
+          padding: const EdgeInsets.all(16),
+          itemCount: updates.length,
+          separatorBuilder: (_, _) => const SizedBox(height: 8),
+          itemBuilder: (context, index) {
+          final update = updates[index];
+
+          return UpdateCard(
+            update: update,
+          );
+          },
+        ),
       ),
     );
   }
 }
-
