@@ -7,10 +7,11 @@ class ProgramLocalRepository {
 
   ProgramLocalRepository(this.databaseHelper);
 
-    Future<List<Map<String, dynamic>>> getEvents() async {
+    Future<List<Event>> getEvents() async {
     final db = await databaseHelper.database;
+    final List<Map<String, dynamic>> rows = await db.query('events');
 
-    return await db.query('events');
+    return rows.map(Event.fromMap).toList();  
   }
   Future updateEvents(int newVersion, List<Event> events) async {
       Database db = await databaseHelper.database;
@@ -31,5 +32,10 @@ class ProgramLocalRepository {
         whereArgs: ['program'],
       );
     });
+  }
+  Future<List<Map<String, dynamic>>> getUpdates() async {
+    final db = await databaseHelper.database;
+
+    return await db.query('updates');
   }
 }
