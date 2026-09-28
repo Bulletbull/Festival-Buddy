@@ -1,9 +1,0 @@
-<Solution>
-  <Folder Name="/Solution Items/">
-    <File Path=".editorconfig" />
-  </Folder>
-  <Project Path="FestivalBuddy API/FestivalBuddy API.csproj" />
-  <Project Path="FestivalBuddy BLL/FestivalBuddy BLL.csproj" />
-  <Project Path="FestivalBuddy Common/FestivalBuddy Common.csproj" />
-  <Project Path="FestivalBuddy DAL/FestivalBuddy DAL.csproj" />
-</Solution>
