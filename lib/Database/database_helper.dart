@@ -38,7 +38,7 @@ class DatabaseHelper {
 
     await db.execute('''
       CREATE TABLE events (
-        event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         date TEXT NOT NULL,
         location TEXT NOT NULL

@@ -20,10 +20,11 @@ class SyncSignalRService {
   }
 
   Future<void> _onVersionUpdated(List<Object?>? arguments) async {
+    
     if (arguments == null || arguments.isEmpty) {
       return;
     }
-
+    print(arguments[0]);
     final data = arguments[0] as Map;
 
     final key = data['key'] as String;

@@ -12,5 +12,6 @@ final syncServiceProvider = Provider<SyncService>((ref) {
     ref.watch(connectivityServiceProvider),
     ref.watch(syncMetadataRepositoryProvider),
     ref.watch(syncMetadataApiProvider),
+    ref
   );
 });

@@ -24,6 +24,7 @@ class Event {
       'id': id,
       'name': name,
       'date': date,
+      'location' : location
     };
   }
 }

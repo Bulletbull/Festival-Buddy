@@ -4,10 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:festival_buddy/domain/event.dart';
 import 'package:festival_buddy/local_repository/program_local_repository.dart';
 import 'package:festival_buddy/local_repository/sync_metadata_repository.dart';
+import 'package:festival_buddy/providers/event_provider.dart';
 import 'package:festival_buddy/remote/event_api.dart';
 import 'package:festival_buddy/remote/sync_metadata_api.dart';
 import 'package:festival_buddy/service/connectivity_service.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SyncService {
   final ProgramLocalRepository programLocalRepository;
@@ -15,6 +17,7 @@ class SyncService {
   final EventApi eventApi;
   final SyncMetadataApi syncMetadataApi;
   final ConnectivityService connectivityService;
+  final Ref ref;
 
   StreamSubscription<bool>? _connectivitySubscription;
 
@@ -22,7 +25,8 @@ class SyncService {
               this.eventApi,
               this.connectivityService, 
               this.syncMetadataRepository, 
-              this.syncMetadataApi);
+              this.syncMetadataApi,
+              this.ref);
 
   void start() {
     _connectivitySubscription =
@@ -56,7 +60,8 @@ class SyncService {
       switch(key){
         case 'program':
           List<Event> events = await eventApi.getEvents();
-          programLocalRepository.updateEvents(version, events);
+          await programLocalRepository.updateEvents(version, events);
+          ref.invalidate(eventsProvider);
         break;
         case 'map' :
 

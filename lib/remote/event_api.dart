@@ -7,7 +7,7 @@ class EventApi {
   EventApi(this.dio);
 
   Future<List<Event>> getEvents() async {
-    final response = await dio.get('/events');
+    final response = await dio.get('/event');
 
     return (response.data as List)
         .map((json) => Event.fromMap(json))
@@ -15,8 +15,8 @@ class EventApi {
   }
 
   Future<Event> getEvent(int id) async {
-    final response = await dio.get('/events/$id');
-
+    final response = await dio.get('/event/$id');
+    
     return Event.fromMap(response.data);
   }
 

@@ -27,9 +27,9 @@ class ProgramPage extends ConsumerWidget {
             final event = events[index];
 
             return EventCard(
-              time: event['date'].toString(),
-              title: event['name'].toString(),
-              location: event['location'].toString(),
+              time: event.date.toString(),
+              title: event.name.toString(),
+              location: event.location.toString(),
             );
           },
         ),

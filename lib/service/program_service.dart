@@ -1,4 +1,6 @@
 
+import 'package:festival_buddy/domain/event.dart';
+
 import '../local_repository/program_local_repository.dart';
 
 class ProgramService {
@@ -6,7 +8,7 @@ class ProgramService {
 
   ProgramService(this.programLocalRepository);
 
-    Future<List<Map<String, dynamic>>> getEvents() async {
+    Future<List<Event>> getEvents() async {
     return await programLocalRepository.getEvents();
   }
 }
