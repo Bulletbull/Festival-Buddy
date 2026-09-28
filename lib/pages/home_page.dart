@@ -50,6 +50,25 @@ class HomePage extends StatelessWidget {
               context.go('/program');
             },
           ),
+
+          const SizedBox(height: 12),
+          NavCard(
+            icon: Icons.system_update_rounded,
+            title: 'Updates',
+            subtitle: 'Check for the latest updates',
+            onTap: () {
+              context.go('/updates');
+            },
+          ),
+          const SizedBox(height: 12),
+          NavCard(
+            icon: Icons.report,
+            title: 'Report an Issue',
+            subtitle: 'Report any issues you encounter',
+            onTap: () {
+              context.go('/report');
+            },
+          ),
         ],
       ),
     );
